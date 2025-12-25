@@ -9,7 +9,8 @@ x-common:
   panel:
     &panel-environment
     APP_URL: "https://panel.example.com"
-    # 32 character length string, you can use this command: openssl rand -base64 32
+    # 32 character length string, you can use this command:
+    # `echo -n 'base64:'; openssl rand -base64 32` and copy the full output here
     APP_KEY: "CHANGE_ME"
     # 20 character length string, you can use this command: openssl rand -base64 20
     HASHIDS_SALT: "CHANGE_ME"
