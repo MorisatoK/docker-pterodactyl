@@ -9,8 +9,13 @@ x-common:
   panel:
     &panel-environment
     APP_URL: "https://panel.example.com"
+    # 32 character length string, you can use this command: openssl rand -base64 32
+    APP_KEY: "CHANGE_ME"
+    # 20 character length string, you can use this command: openssl rand -base64 20
+    HASHIDS_SALT: "CHANGE_ME"
+    HASHIDS_LENGTH: 8
     # A list of valid timezones can be found here: http://php.net/manual/en/timezones.php
-    APP_TIMEZONE: "UTC"
+    APP_TIMEZONE: "Europe/Berlin"
     APP_SERVICE_AUTHOR: "admin@example.com"
   mail:
     &mail-environment
@@ -52,7 +57,7 @@ services:
       - local
 
   panel:
-    image: ghcr.io/pterodactyl/panel:v1.11.10
+    image: ghcr.io/pterodactyl/panel:v1.11.11
     restart: always
     networks:
       - pterodactyl
