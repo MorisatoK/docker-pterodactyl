@@ -80,18 +80,6 @@ services:
       REDIS_HOST: "cache"
       DB_HOST: "database"
       TRUSTED_PROXIES: "*"
-    labels:
-      # HTTP
-      - "traefik.http.routers.pterodactyl_panel.entrypoints=web"
-      - "traefik.http.routers.pterodactyl_panel.rule=Host(`${PANEL_DOMAIN}`)"
-      - "traefik.http.routers.pterodactyl_panel.middlewares=panel_https"
-      - "traefik.http.middlewares.panel_https.redirectscheme.scheme=https"
-      # HTTPS
-      - "traefik.http.routers.pterodactyl_panel-https.entrypoints=websecure"
-      - "traefik.http.routers.pterodactyl_panel-https.rule=Host(`${PANEL_DOMAIN}`)"
-      - "traefik.http.routers.pterodactyl_panel-https.tls=true"
-      - "traefik.http.routers.pterodactyl_panel-https.tls.certresolver=letsencrypt"
-      - "traefik.http.services.pterodactyl_panel-https.loadbalancer.server.port=80"
 
 networks:
   local:

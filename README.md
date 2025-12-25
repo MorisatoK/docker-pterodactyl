@@ -3,7 +3,8 @@
 </p>
 
 # 📚 About
-There’s a lack of information about setting up and running Pterodactyl Panel inside docker using Traefik as a reverse proxy. This guide focuses on the fastest and easiest way to do that! This setup has been tested and is currently running in a production environment. All of images used in this setup are from official sources and even uses official compose files provided by Pterodactyl with addition of Traefik.
+~~There’s a lack of information about setting up and running Pterodactyl Panel inside docker using Traefik as a reverse proxy. This guide focuses on the fastest and easiest way to do that! This setup has been tested and is currently running in a production environment. All of images used in this setup are from official sources and even uses official compose files provided by Pterodactyl with addition of Traefik.~~
+TBD: Guide about setting up Pterodactyl in two servers with Traefik as a separate router.
 
 # 🧰 Getting Started
 This guide assumes you have at least two servers, one for panel and one for wings. You're fine by using a cheap VPS for the panel, while wings may require a higher spec server depending on the game servers you're planning to run.
@@ -26,21 +27,21 @@ Create second `A record` pointing to wings server IP. If you're using Cloudflare
 docker network create pterodactyl
 ```
 
-### Preparations / Setting up Traefik
-<b>Clone repository</b><br />
+~~### Preparations / Setting up Traefik~~
+~~<b>Clone repository</b><br />~~
 ```
 git clone https://github.com/EdyTheCow/pterodactyl-docker.git
 ```
 
-<b>Set correct acme.json permissions</b><br />
+~~<b>Set correct acme.json permissions</b><br />~~
 
-Navigate to `_base/data/traefik/` and run
+~~Navigate to `_base/data/traefik/` and run~~
 ```
 sudo chmod 600 acme.json
 ```
 
-<b>Start docker compose</b><br />
-Inside of `_base/compose` run
+~~<b>Start docker compose</b><br />~~
+~~Inside of `_base/compose` run~~
  ```
 docker-compose up -d
  ```
@@ -58,6 +59,8 @@ Navigate to `panel/compose/docker-compose.yml` and set these variables
 | MYSQL_ROOT_PASSWORD | - | Use a password generator to create a strong password |
 | MYSQL_PASSWORD | - | Don't reuse your root's password for this, generate a new one |
 | APP_URL | https://panel.example.com | Same as `PANEL_DOMAIN` but with `https://` included|
+| APP_KEY | - | Follow instructions in file to fill this|
+| HASHIDS_SALT | - | Follow instructions in file to fill this|
 
 Rest of the variables can be set as desired, these three are required for panel's basic functionality.
 
@@ -84,11 +87,11 @@ Navigate to the admin control panel and add a new `Location`. Then navigate to `
 | Behind Proxy | Behind Proxy | Set this to `Behind Proxy` for Traefik to work properly|
 | Daemon Port | 443 | Change the default port |
 
-Rest of the settings can be set as you desire. You can leave `Daemon Server File Directory` as is unless you want to store servers data in a specific location. In that case make sure to read instruction in `wings/compose/.env`. Otherwise proceed with the guide.
+Rest of the settings can be set as you desire. Leave `Daemon Server File Directory` as is, the server data storage location is mapped to this location. See `wings/compose/.env`.
 
 ### Setting up Wings
 The guide assumes you're setting this up on a different server than the panel is running on!
-Go back to the `Preparations / Setting up Traefik` section and follow the same instruction for setting up Traefik.
+~~Go back to the `Preparations / Setting up Traefik` section and follow the same instruction for setting up Traefik.~~
 
 <b>Configure variables</b><br />
 Navigate to `wings/compose/.env` and set `WINGS_DOMAIN` to the domain you pointed to wings server earlier.
