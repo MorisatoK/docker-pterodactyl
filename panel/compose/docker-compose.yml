@@ -60,6 +60,9 @@ services:
   panel:
     image: ghcr.io/pterodactyl/panel:v1.11.11
     restart: always
+    ports:
+      - "80:80"
+      - "443:443"
     networks:
       - pterodactyl
       - local
