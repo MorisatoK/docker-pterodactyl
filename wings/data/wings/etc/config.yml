@@ -1,0 +1,1 @@
+Paste Panel config in here. Make sure to change the ports from the panel to the actual wings ports of 8080/2022. Traefik is doing the port magic.
